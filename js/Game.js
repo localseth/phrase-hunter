@@ -44,6 +44,7 @@ const Game = class {
     }
 
     gameOver (gameWon) {
+        const hearts = Array.from(livesObject.children);
         if (!gameWon) {
             overlay.className = 'lose';
             title.innerText = "Sorry, you didn't win! try again?"
@@ -51,7 +52,6 @@ const Game = class {
             overlay.className = 'win';
             title.innerText = "Congratulations! you've won!";
         }
-        console.log('Game OVER!');
         overlay.style.display = 'flex';
         // reset phrase and buttons
         phrase.firstElementChild.innerHTML = '';
@@ -59,7 +59,9 @@ const Game = class {
             i.className = 'key';
             i.removeAttribute('disabled');
         })
-        Array.from(livesObject).forEach(i => i.setAttribute('src','images/liveHeart.png'));
+        hearts.forEach(i => {
+            i.firstChild.setAttribute('src', 'images/liveHeart.png');
+        })
 
     }
 
