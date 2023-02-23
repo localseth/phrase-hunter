@@ -1,23 +1,28 @@
 /* Treehouse FSJS Techdegree
  * Project 4 - OOP Game App
  * app.js */
+let game
+const startBtn = document.getElementById('btn__reset');
+const letters = document.getElementsByClassName('letter');
+const livesObject = document.getElementsByClassName('tries')[0].parentElement;
+const overlay = document.getElementById('overlay');
+const title = document.querySelector('.title');
+const qwerty = document.getElementById('qwerty');
+const phrase = document.getElementById('phrase');
 
-const logPhrase = (phrase) => {
-    console.log(`Phrase - phrase: `, phrase.phrase);
-    };
+startBtn.addEventListener('click', () => {
+    game = new Game();
+    game.startGame();
+});
 
-const game = new Game();
+qwerty.addEventListener('click', (e) => {
+    const button = e.target;
+    if (button.tagName === 'BUTTON' && button.className !== 'chosen') {
+        game.handleInteraction(button);
+    }
+})
 
-// game.phrases.forEach((phrase, index) => {
-//     console.log(`Phrase ${index} - phrase: ${phrase.phrase}`);
-// });
+// const game = new Game();
 
-// const phrase = new Phrase('Life is like a box of chocolates');
-
-// console.log(`Phrase - phrase: ${phrase.phrase}`);
-
-logPhrase(game.getRandomPhrase());
-logPhrase(game.getRandomPhrase());
-logPhrase(game.getRandomPhrase());
-logPhrase(game.getRandomPhrase());
-logPhrase(game.getRandomPhrase());
+// game.startGame();
+// console.log('active phrase: ' + game.activePhrase.phrase)

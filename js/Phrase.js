@@ -26,21 +26,16 @@ const Phrase = class {
         })
     }
 
-    checkLetter = (btn) => {
-        const letterSelect = btn.innerText;
-        const letterAll = document.getElementsByClassName("letter");
-        const letterArray = Array.from(letterAll);
-        let match = null;
-        for (each of letterArray) {
-            if (each.innerText === letterSelect) {
-                match = letterSelect;
-                each.className += ' show';
-            }
-        }
-        return match;
+    checkLetter = (letter) => {
+        return this.phrase.includes(letter);
     }
 
-    showMatchedLetter = () => {
-
+    showMatchedLetter = (letter) => {1
+        const letterArray = Array.from(letters);
+        letterArray.forEach( i => {
+            if (i.innerText === letter) {
+                i.className += ' show';
+            }
+        })
     }
 }
