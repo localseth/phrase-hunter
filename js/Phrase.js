@@ -7,6 +7,7 @@ const Phrase = class {
         this.phrase = phrase.toLowerCase();
     }
 
+    // adds a letter element to the phrase UL for each letter in the phrase
     addPhraseToDisplay = () => {
         const phraseAsArray = this.phrase.split('');
         const ul = document.getElementById('phrase').firstElementChild
@@ -26,10 +27,12 @@ const Phrase = class {
         })
     }
 
+    // check to see if the letter chosen by user is included in this phrase
     checkLetter = (letter) => {
         return this.phrase.includes(letter);
     }
 
+    // add "show" class to letter element in the phrase UL 
     showMatchedLetter = (letter) => {1
         const letterArray = Array.from(letters);
         letterArray.forEach( i => {

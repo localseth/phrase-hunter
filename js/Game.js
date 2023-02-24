@@ -15,23 +15,27 @@ const Game = class {
         this.activePhrase = null;
     }
 
+    // selects a random phrase from the array and creates a new instance of the Phrase class
     getRandomPhrase () {
         const randomNumber = Math.floor(Math.random() * this.phrases.length);
         const selectedPhrase = this.phrases[randomNumber].phrase;
         return new Phrase(selectedPhrase);
     }
 
+    // start game: set active phrase, load to display, and remove overlay
     startGame () {
         overlay.style.display = "none";
         this.activePhrase = this.getRandomPhrase()
         this.activePhrase.addPhraseToDisplay();
     }
 
+    // when the length of the array of letters is equal to the array of revelead letters, returns true fora  win (otherwise false)
     checkForWin () {
         const revealedLetters = document.getElementsByClassName('show');
         return revealedLetters.length === letters.length;
     }
 
+    // removes a heart when the an incorrect letter is guessed
     removeLife () {
         const i = 5 - this.missed;
         const heartImg = livesObject.querySelector(`:nth-child(${i})`).lastElementChild;
@@ -43,6 +47,7 @@ const Game = class {
         }
     }
 
+    // determines win or lose based on parameter passed in and resets the game
     gameOver (gameWon) {
         const hearts = Array.from(livesObject.children);
         if (!gameWon) {
@@ -65,6 +70,7 @@ const Game = class {
 
     }
 
+    // control user interaction with the keyboard
     handleInteraction (button) {
         const letter = button.innerText;
         console.log('letter ' + letter + ' was clicked');
